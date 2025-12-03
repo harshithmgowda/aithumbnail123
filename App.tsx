@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { LoadingState } from './types';
-import { generateThumbnail } from './services/geminiService';
+import { generateThumbnail } from './services/huggingfaceService';
 import { ImageUploader } from './components/ImageUploader';
 import { Button } from './components/Button';
 import { Sparkles, Download, Wand2, AlertCircle, ImageIcon, Layers, Zap } from 'lucide-react';
