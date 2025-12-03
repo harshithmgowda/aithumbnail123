@@ -74,29 +74,24 @@ export const generateThumbnail = async (
   }
 
   try {
-    // Convert all files to generative parts in parallel
-    const imageParts = await Promise.all(files.map(fileToGenerativePart));
+    // For Imagen, we need to convert the description to a prompt
+    // and optionally include reference images
+    const prompt = `Create a professional, eye-catching thumbnail image for a video. ${description}. Make it high-contrast, vibrant colors, suitable for video platforms like YouTube. 16:9 aspect ratio.`;
 
-    const promptPart: Part = {
-      text: `Create a professional high-contrast thumbnail. User description: ${description}`,
-    };
-
-    const result = await model.generateContent({
-      contents: [
-        {
-          role: "user",
-          parts: [...imageParts, promptPart],
-        },
-      ],
+    // Imagen API uses generateImages method
+    const result = await model.generateImages({
+      prompt: prompt,
+      // Optionally include reference images if supported
+      // For now, we'll generate from text description only
     });
 
-    const response = result.response;
-    const parts = response.candidates?.[0]?.content?.parts ?? [];
-
-    for (const part of parts) {
-      if (part.inlineData && part.inlineData.data) {
-        const mimeType = part.inlineData.mimeType || "image/png";
-        return `data:${mimeType};base64,${part.inlineData.data}`;
+    // Parse the response - Imagen returns an array of images
+    if (result.response && result.response.images && result.response.images.length > 0) {
+      const image = result.response.images[0];
+      if (image.bytesBase64Encoded) {
+        // Imagen returns base64 encoded bytes
+        const mimeType = image.mimeType || "image/png";
+        return `data:${mimeType};base64,${image.bytesBase64Encoded}`;
       }
     }
 
