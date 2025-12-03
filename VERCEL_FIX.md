@@ -126,16 +126,19 @@ If GitHub shows the correct package, but Vercel still builds the wrong one, the 
 
 ## 📞 Current Status
 
-- ✅ GitHub has correct code: commit `64acd16`
+- ✅ GitHub has correct code: commit `e7e5879`
 - ✅ `package.json` has `@google/generative-ai` (correct)
 - ✅ Local build works: `npm install && npm run build`
-- ❌ Vercel stuck on commit `3f5aef5` (broken)
-- ❌ Vercel not detecting new commits (Git integration broken)
+- ✅ Vercel build now works (Git integration was fixed!)
+- ✅ Model name fixed: using `gemini-1.5-flash` (supports images)
+- ✅ API calls should now work correctly
 
-**The code is ready. The only issue is Vercel's Git configuration.**
+**Status: RESOLVED! The app should now work on Vercel.**
+
+If you still see the 404 error about gemini-1.5-pro, wait for the latest deployment to complete (commit `e7e5879`).
 
 ---
 
 Last updated: December 3, 2025
-Latest working commit on GitHub: `64acd16`
+Latest working commit on GitHub: `e7e5879`
 
