@@ -9,9 +9,9 @@ if (!apiKey) {
 // Initialize Gemini client
 const genAI = new GoogleGenerativeAI(apiKey || "");
 
-// Use an image-capable model; adjust if you have access to a specific one
+// Use an image-capable model; gemini-1.5-flash supports vision/images
 const model: GenerativeModel = genAI.getGenerativeModel({
-  model: "gemini-1.5-pro",
+  model: "gemini-1.5-flash",
   systemInstruction: {
     role: "system",
     parts: [
