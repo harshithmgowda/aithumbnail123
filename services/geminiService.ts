@@ -11,7 +11,7 @@ const genAI = new GoogleGenerativeAI(apiKey || "");
 
 // Use an image-capable model; gemini-1.5-flash supports vision/images
 const model: GenerativeModel = genAI.getGenerativeModel({
-  model: "gemini-1.5-flash",
+  model: "gemini-pro-vision",
   systemInstruction: {
     role: "system",
     parts: [
