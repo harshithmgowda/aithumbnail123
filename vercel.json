@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm ci && npm run build",
+  "buildCommand": "bash verify-build.sh && npm ci && npm run build",
   "outputDirectory": "dist",
   "framework": "vite",
   "installCommand": "npm ci",
